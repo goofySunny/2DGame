@@ -4,6 +4,7 @@
  */
 package com.mycompany.dgame.entity;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -20,5 +21,7 @@ public class Entity {
     
     public int spriteCounter = 0;
     public int spriteNumber = 1;
+    
+    public Rectangle collisionRect;
     
 }

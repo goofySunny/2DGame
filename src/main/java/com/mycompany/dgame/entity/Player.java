@@ -8,6 +8,7 @@ import com.mycompany.dgame.GamePanel;
 import com.mycompany.dgame.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -23,6 +24,7 @@ public class Player extends Entity {
     
     public final int screenX;
     public final int screenY;
+    public boolean collision = false;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -40,6 +42,7 @@ public class Player extends Entity {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         speed = 4;
+        collisionRect = new Rectangle(gp.tileSize/4, gp.tileSize/3, gp.tileSize/4, gp.tileSize/3);
     }
     
     public void getPlayerImage() {
@@ -63,19 +66,15 @@ public class Player extends Entity {
         
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
             if (keyH.upPressed) {
-                worldY -= speed;
                 direction = "up";
             }
             if (keyH.downPressed) {
-                worldY += speed;
                 direction = "down";
             }
             if (keyH.rightPressed) {
-                worldX += speed;
                 direction = "right";
             }
             if (keyH.leftPressed) {
-                worldX -= speed;
                 direction = "left";
             }
 
@@ -88,6 +87,22 @@ public class Player extends Entity {
                     spriteNumber = 1;
                 }
                 spriteCounter = 0;
+            }
+            if (collision == false) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
             }
         }
     }
