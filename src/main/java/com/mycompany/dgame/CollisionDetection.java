@@ -30,35 +30,31 @@ public class CollisionDetection {
         
         switch (entity.direction) {
             case "up":
+                topRow = (topY - entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[leftCol][topRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[rightCol][topRow]].collision == true) {
                     gp.player.collision = true;
-                } else {
-                    gp.player.collision = false;
                 }
                 break;
             case "down":
+                bottomRow = (bottomY + entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[leftCol][bottomRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[rightCol][bottomRow]].collision == true) {
                     gp.player.collision = true;
-                } else {
-                    gp.player.collision = false;
                 }
                 break;
             case "left":
+                leftCol = (leftX - entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[leftCol][bottomRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[leftCol][topRow]].collision == true) {
                     gp.player.collision = true;
-                } else {
-                    gp.player.collision = false;
                 }
                 break;
             case "right":
+                rightCol = (rightX + entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[rightCol][bottomRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[rightCol][topRow]].collision == true) {
                     gp.player.collision = true;
-                } else {
-                    gp.player.collision = false;
                 }
                 break;
         }

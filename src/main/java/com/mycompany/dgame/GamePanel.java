@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     
     public Player player = new Player(this, keyH);
-    CollisionDetection cd = new CollisionDetection(this);
+    public CollisionDetection cd = new CollisionDetection(this);
     TileManager tileM = new TileManager(this);
     
     private Thread gameThread;
@@ -60,7 +60,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     void update() {
-        cd.detectCollision(player);
         player.update();
     }
     

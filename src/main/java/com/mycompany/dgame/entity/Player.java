@@ -42,7 +42,7 @@ public class Player extends Entity {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         speed = 4;
-        collisionRect = new Rectangle(gp.tileSize/4, gp.tileSize/3, gp.tileSize/4, gp.tileSize/3);
+        collisionRect = new Rectangle(gp.tileSize/3, gp.tileSize/4, gp.tileSize/3, gp.tileSize/4*3);
     }
     
     public void getPlayerImage() {
@@ -88,6 +88,10 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
+            
+            collision = false;
+            gp.cd.detectCollision(this);
+            
             if (collision == false) {
                 switch (direction) {
                     case "up":
