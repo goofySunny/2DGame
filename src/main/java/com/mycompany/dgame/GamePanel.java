@@ -44,11 +44,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
     
-//    Set Player Default position
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
-    
     public GamePanel() {
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
