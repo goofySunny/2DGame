@@ -2,15 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.dgame;
+package ir.najaftech.dgame;
 
-import com.mycompany.dgame.entity.Player;
+import ir.najaftec.dgame.entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
+import obj.SuperObject;
 import tile.TileManager;
 
 /**
@@ -33,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyH = new KeyHandler();
     
     public Player player = new Player(this, keyH);
+    public ObjectPlacer objectPlacer = new ObjectPlacer(this);
     public CollisionDetection cd = new CollisionDetection(this);
     TileManager tileM = new TileManager(this);
     
@@ -43,6 +45,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxWorldRow = 50;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
+    
+//    Objects
+    SuperObject objs[] = new SuperObject[10];
     
     public GamePanel() {
         
@@ -58,10 +63,14 @@ public class GamePanel extends JPanel implements Runnable {
         player.update();
     }
     
-    void initGame() {
+    public void initGame() {
         gameThread = new Thread(this);
         
         gameThread.start();
+    }
+    
+    public void loadObjects() {
+        objectPlacer.placeObjects();
     }
     
     @Override
@@ -103,7 +112,18 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        
+//        TILES
         tileM.draw(g2d);
+        
+//        OBJECTS
+        for (int i=0; i < objs.length; i++) {
+            if (objs[i] != null) {
+                objs[i].drawObject(g2d, this);
+            }
+        }
+        
+//        PLAYER
         player.draw(g2d);
         g2d.dispose();
     }

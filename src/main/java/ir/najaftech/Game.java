@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.dgame;
+package ir.najaftech;
 
+import ir.najaftech.dgame.GamePanel;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -22,6 +23,7 @@ public class Game {
         mainFrame.setVisible(true);
         mainFrame.add(gamepanel);
         mainFrame.pack();
+        gamepanel.loadObjects();
         gamepanel.initGame();
     }
 }

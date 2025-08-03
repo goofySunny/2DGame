@@ -4,7 +4,7 @@
  */
 package tile;
 
-import com.mycompany.dgame.GamePanel;
+import ir.najaftech.dgame.GamePanel;
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.dgame.entity;
+package ir.najaftec.dgame.entity;
 
-import com.mycompany.dgame.GamePanel;
-import com.mycompany.dgame.KeyHandler;
+import ir.najaftech.dgame.GamePanel;
+import ir.najaftech.dgame.KeyHandler;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
