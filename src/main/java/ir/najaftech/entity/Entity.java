@@ -23,5 +23,6 @@ public class Entity {
     public int spriteNumber = 1;
     
     public Rectangle collisionRect;
+    public int collisionDefaultX, collisionDefaultY;
     
 }

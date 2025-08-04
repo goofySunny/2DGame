@@ -6,6 +6,7 @@ package ir.najaftech.obj;
 
 import ir.najaftech.dgame.GamePanel;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -16,8 +17,9 @@ public class SuperObject {
     
     BufferedImage image;
     public int worldX, worldY;
-    boolean collision =  false;
-    String name;
+    public boolean collision =  false;
+    public String name;
+    public Rectangle collisionRect = new Rectangle(0, 0, 48, 48);
     
     public void drawObject(Graphics2D g2d, GamePanel gp) {
             int screenX = worldX - gp.player.worldX + gp.player.screenX;

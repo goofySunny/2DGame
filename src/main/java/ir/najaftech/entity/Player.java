@@ -25,6 +25,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public boolean collision = false;
+    int hasKey = 0;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -43,6 +44,8 @@ public class Player extends Entity {
         worldY = gp.tileSize * 21;
         speed = 4;
         collisionRect = new Rectangle(gp.tileSize/3, gp.tileSize/4, gp.tileSize/3, gp.tileSize/4*3);
+        collisionDefaultX = collisionRect.x;
+        collisionDefaultY = collisionRect.y;
     }
     
     public void getPlayerImage() {
@@ -90,7 +93,27 @@ public class Player extends Entity {
             }
             
             collision = false;
-            gp.cd.detectCollision(this);
+//            TILE COLLISION CHECK
+            gp.cd.detectTileCollision(this);
+//            OBJECT COLLISION CHECK
+            int index = gp.cd.detectObjectCollision(this, true);
+            
+            if (index != 999) {
+                switch (gp.objs[index].name) {
+                    case "Key":
+                        this.hasKey++;
+                        gp.objs[index] = null;
+                        break;
+                    case "Door":
+                        if (hasKey > 0) {
+                            gp.objs[index] = null;
+                            hasKey--;
+                        } else {
+                            collision = true;
+                        }
+                        break;
+                }
+            }
             
             if (collision == false) {
                 switch (direction) {

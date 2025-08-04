@@ -17,7 +17,7 @@ public class CollisionDetection {
         this.gp = gp;
     }
 
-    public void detectCollision(Entity entity) {
+    public void detectTileCollision(Entity entity) {
         int topY = entity.worldY + entity.collisionRect.y;
         int bottomY = entity.worldY + entity.collisionRect.y + entity.collisionRect.height;
         int leftX = entity.worldX + entity.collisionRect.x;
@@ -58,6 +58,62 @@ public class CollisionDetection {
                 }
                 break;
         }
+    }
+    
+    public int detectObjectCollision(Entity entity, boolean player) {
+        int index = 999;
+        
+        for (int i = 0; i < gp.objs.length; i++) {
+            if (gp.objs[i] != null) {
+                //            Entity Coordinates
+                entity.collisionRect.x = entity.collisionRect.x + entity.worldX;
+                entity.collisionRect.y = entity.collisionRect.y + entity.worldY;
+    //            Object Coordinates
+                gp.objs[i].collisionRect.x = gp.objs[i].collisionRect.x + gp.objs[i].worldX;
+                gp.objs[i].collisionRect.y = gp.objs[i].collisionRect.y + gp.objs[i].worldY;
+
+                switch (entity.direction) {
+                    case "up":
+                        entity.collisionRect.y -= entity.speed;
+                        if (entity.collisionRect.intersects(gp.objs[i].collisionRect)) {
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "down":
+                        entity.collisionRect.y += entity.speed;
+                        if (entity.collisionRect.intersects(gp.objs[i].collisionRect)) {
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "left":
+                        entity.collisionRect.x -= entity.speed;
+                        if (entity.collisionRect.intersects(gp.objs[i].collisionRect)) {
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "right":
+                        entity.collisionRect.x += entity.speed;
+                        if (entity.collisionRect.intersects(gp.objs[i].collisionRect)) {
+                            if (player == true) {
+                                index = i;
+                            }
+                        }
+                        break;
+                }
+                entity.collisionRect.x = entity.collisionDefaultX;
+                entity.collisionRect.y = entity.collisionDefaultY;
+
+                gp.objs[i].collisionRect.x = 0;
+                gp.objs[i].collisionRect.y = 0;
+            }
+        }
+        return index;
     }
     
 }

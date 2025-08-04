@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = tileSize * maxWorldRow;
     
 //    Objects
-    SuperObject objs[] = new SuperObject[10];
+    public SuperObject objs[] = new SuperObject[10];
     
     public GamePanel() {
         
