@@ -101,11 +101,13 @@ public class Player extends Entity {
             if (index != 999) {
                 switch (gp.objs[index].name) {
                     case "Key":
+                        gp.playSoundEffect(1);
                         this.hasKey++;
                         gp.objs[index] = null;
                         break;
                     case "Door":
                         if (hasKey > 0) {
+                            gp.playSoundEffect(2);
                             gp.objs[index] = null;
                             hasKey--;
                         } else {
