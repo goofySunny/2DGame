@@ -4,7 +4,7 @@
  */
 package ir.najaftech.dgame;
 
-import ir.najaftec.dgame.entity.Entity;
+import ir.najaftech.entity.Entity;
 /**
  *
  * @author sun

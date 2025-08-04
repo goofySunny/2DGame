@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ir.najaftec.dgame.entity;
+package ir.najaftech.entity;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;

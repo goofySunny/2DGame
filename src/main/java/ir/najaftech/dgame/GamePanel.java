@@ -4,14 +4,14 @@
  */
 package ir.najaftech.dgame;
 
-import ir.najaftec.dgame.entity.Player;
+import ir.najaftech.entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
-import obj.SuperObject;
+import ir.najaftech.obj.SuperObject;
 import tile.TileManager;
 
 /**

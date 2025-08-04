@@ -4,8 +4,8 @@
  */
 package ir.najaftech.dgame;
 
-import obj.OBJ_Door;
-import obj.OBJ_Key;
+import ir.najaftech.obj.OBJ_Door;
+import ir.najaftech.obj.OBJ_Key;
 
 /**
  *
