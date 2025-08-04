@@ -25,7 +25,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public boolean collision = false;
-    int hasKey = 0;
+    public int hasKey = 0;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -101,16 +101,19 @@ public class Player extends Entity {
             if (index != 999) {
                 switch (gp.objs[index].name) {
                     case "Key":
+                        gp.ui.showMessage("You Got Key!");
                         gp.playSoundEffect(1);
                         this.hasKey++;
                         gp.objs[index] = null;
                         break;
                     case "Door":
                         if (hasKey > 0) {
+                            gp.ui.showMessage("You opened a door!");
                             gp.playSoundEffect(2);
                             gp.objs[index] = null;
                             hasKey--;
                         } else {
+                            gp.ui.showMessage("You need a key!");
                             collision = true;
                         }
                         break;

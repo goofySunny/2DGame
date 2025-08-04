@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
  */
 public class SuperObject {
     
-    BufferedImage image;
+    public BufferedImage image;
     public int worldX, worldY;
     public boolean collision =  false;
     public String name;

@@ -38,6 +38,8 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
 //    Sound
     public Sound sound = new Sound();
+//    UI
+    public UI ui = new UI(this);
 //    Object
     public ObjectPlacer objectPlacer = new ObjectPlacer(this);
     public CollisionDetection cd = new CollisionDetection(this);
@@ -130,6 +132,8 @@ public class GamePanel extends JPanel implements Runnable {
         
 //        PLAYER
         player.draw(g2d);
+//        UI
+        ui.draw(g2d);
         g2d.dispose();
     }
     
