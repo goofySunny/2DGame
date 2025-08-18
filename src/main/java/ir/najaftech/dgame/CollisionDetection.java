@@ -33,28 +33,28 @@ public class CollisionDetection {
                 topRow = (topY - entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[leftCol][topRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[rightCol][topRow]].collision == true) {
-                    gp.player.collision = true;
+                    entity.collision = true;
                 }
                 break;
             case "down":
                 bottomRow = (bottomY + entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[leftCol][bottomRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[rightCol][bottomRow]].collision == true) {
-                    gp.player.collision = true;
+                    entity.collision = true;
                 }
                 break;
             case "left":
                 leftCol = (leftX - entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[leftCol][bottomRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[leftCol][topRow]].collision == true) {
-                    gp.player.collision = true;
+                    entity.collision = true;
                 }
                 break;
             case "right":
                 rightCol = (rightX + entity.speed)/gp.tileSize;
                 if(gp.tileM.tiles[gp.tileM.tileMap[rightCol][bottomRow]].collision == true ||
                     gp.tileM.tiles[gp.tileM.tileMap[rightCol][topRow]].collision == true) {
-                    gp.player.collision = true;
+                    entity.collision = true;
                 }
                 break;
         }
