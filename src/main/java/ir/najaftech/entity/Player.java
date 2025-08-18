@@ -18,39 +18,38 @@ import javax.imageio.ImageIO;
  * @author sun
  */
 public class Player extends Entity {
-    
-    GamePanel gp;
+
     KeyHandler keyH;
-    
+
     public final int screenX;
     public final int screenY;
-    public boolean collision = false;
     public int hasKey = 0;
-    
+
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        super(2, gp);
         this.keyH = keyH;
-        
-        screenX = (gp.screenWidth/2) - gp.tileSize/2;
-        screenY = (gp.screenHeight/2) - gp.tileSize/2;
-        
+
+        screenX = (gp.screenWidth / 2) - gp.tileSize / 2;
+        screenY = (gp.screenHeight / 2) - gp.tileSize / 2;
+
         setDefaultValues();
-        getPlayerImage();
+        getEntityImage();
         direction = "down";
     }
-    
+
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         speed = 4;
-        collisionRect = new Rectangle(gp.tileSize/3, gp.tileSize/4, gp.tileSize/3, gp.tileSize/4*3);
+        collisionRect = new Rectangle(gp.tileSize / 3, gp.tileSize / 4, gp.tileSize / 3, gp.tileSize / 4 * 3);
         collisionDefaultX = collisionRect.x;
         collisionDefaultY = collisionRect.y;
     }
-    
-    public void getPlayerImage() {
+
+    @Override
+    public void getEntityImage() {
         try {
-            
+
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
@@ -59,14 +58,14 @@ public class Player extends Entity {
             right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
             left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
             left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    
+
     public void update() {
-        
+
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -91,13 +90,13 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-            
+
             collision = false;
 //            TILE COLLISION CHECK
             gp.cd.detectTileCollision(this);
 //            OBJECT COLLISION CHECK
             int index = gp.cd.detectObjectCollision(this, true);
-            
+
             if (index != 999) {
                 switch (gp.objs[index].name) {
                     case "Key":
@@ -119,7 +118,7 @@ public class Player extends Entity {
                         break;
                 }
             }
-            
+
             if (collision == false) {
                 switch (direction) {
                     case "up":
@@ -138,15 +137,15 @@ public class Player extends Entity {
             }
         }
     }
-    
+
     public void draw(Graphics2D g2d) {
         BufferedImage image = null;
-        
+
         switch (direction) {
             case "up":
                 if (spriteNumber == 1) {
                     image = up1;
-                } 
+                }
                 if (spriteNumber == 2) {
                     image = up2;
                 }
@@ -154,7 +153,7 @@ public class Player extends Entity {
             case "down":
                 if (spriteNumber == 1) {
                     image = down1;
-                } 
+                }
                 if (spriteNumber == 2) {
                     image = down2;
                 }
@@ -176,7 +175,7 @@ public class Player extends Entity {
                 }
                 break;
         }
-        
+
         g2d.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }

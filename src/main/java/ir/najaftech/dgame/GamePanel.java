@@ -4,6 +4,7 @@
  */
 package ir.najaftech.dgame;
 
+import ir.najaftech.entity.CHAR_Pinkie;
 import ir.najaftech.entity.Player;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -35,7 +36,10 @@ public class GamePanel extends JPanel implements Runnable {
     
     
 //    Entity
+//    Player
     public Player player = new Player(this, keyH);
+//    Pinkie
+    public CHAR_Pinkie pinkie = new CHAR_Pinkie(2, this);
 //    Sound
     public Sound sound = new Sound();
 //    UI
@@ -68,6 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
     
     void update() {
         player.update();
+        pinkie.update();
     }
     
     public void initGame() {
@@ -132,15 +137,17 @@ public class GamePanel extends JPanel implements Runnable {
         
 //        PLAYER
         player.draw(g2d);
+//        Pinkie
+        pinkie.draw(g2d);
 //        UI
         ui.draw(g2d);
         g2d.dispose();
     }
     
     public void playMusic(int i) {
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+//        sound.setFile(i);
+//        sound.play();
+//        sound.loop();
     }
     
     public void playSoundEffect(int i) {
