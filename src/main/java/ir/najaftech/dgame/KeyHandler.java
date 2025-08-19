@@ -18,6 +18,12 @@ public class KeyHandler implements KeyListener {
     public boolean leftPressed;
     public boolean rightPressed;
     
+    private GamePanel gp;
+    
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
+    
     @Override
     public void keyTyped(KeyEvent ke) {
     
@@ -31,6 +37,13 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_S) downPressed = true;
         if (code == KeyEvent.VK_A) leftPressed = true;
         if (code == KeyEvent.VK_D) rightPressed = true;
+        if (code == KeyEvent.VK_P) {
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            } else {
+                gp.gameState = gp.playState;
+            }
+        }
     }
 
     @Override

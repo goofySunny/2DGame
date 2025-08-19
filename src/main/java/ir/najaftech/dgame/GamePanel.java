@@ -30,9 +30,11 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
     
+    public boolean paused = false;
+    
     final int FPS = 60;
     
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     
     
 //    Entity
@@ -60,6 +62,11 @@ public class GamePanel extends JPanel implements Runnable {
 //    Objects
     public SuperObject objs[] = new SuperObject[10];
     
+//    GameState
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    
     public GamePanel() {
         
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -71,14 +78,20 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     void update() {
-        player.update();
-        pinkie.update();
+        if (gameState == playState) {
+            player.update();
+            pinkie.update();
+        }
+        if (gameState == pauseState) {
+//            Nothing for now
+        }
     }
     
     public void initGame() {
         gameThread = new Thread(this);
         gameThread.start();
         this.playMusic(0);
+        this.gameState = this.playState;
     }
     
     public void loadObjects() {
@@ -97,6 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
         
         
         while (gameThread != null) {
+            
             currentTime = System.nanoTime();
             
             delta += (currentTime - lastTime) / drawInterval;
