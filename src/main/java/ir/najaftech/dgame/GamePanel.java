@@ -13,7 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import ir.najaftech.obj.SuperObject;
-import tile.TileManager;
+import ir.najaftech.tile.TileManager;
 
 /**
  *
@@ -159,9 +159,9 @@ public class GamePanel extends JPanel implements Runnable {
     }
     
     public void playMusic(int i) {
-//        sound.setFile(i);
-//        sound.play();
-//        sound.loop();
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
     }
     
     public void playSoundEffect(int i) {
